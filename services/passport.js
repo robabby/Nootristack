@@ -6,6 +6,18 @@ const keys = require('../config/keys');
 
 const User = mongoose.model('users');
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser((id, ) => {
+  User.findById(id)
+    .then(user => {
+      done(null, user);
+    })
+
+});
+
 passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
@@ -14,6 +26,17 @@ passport.use(
   }, (accessToken, refreshToken, profile, done) => {
     // once you hit this segment of the process, the token is cached
     // and google wont need to ask for permission again until expiration
-    new User({ googleId: profile.id }).save();
+    User.findOne({ googleId: profile.id })
+      .then((existingUser) => {
+        if (existingUser) {
+          // we already have a record with the given profileId
+          done(null, existingUser)
+        } else {
+          // make a new record
+          new User({ googleId: profile.id })
+            .save()
+            .then(user => done(null, user));
+        }
+      });
   })
 );
