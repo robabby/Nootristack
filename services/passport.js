@@ -22,7 +22,8 @@ passport.use(
   new GoogleStrategy({
     clientID: keys.googleClientID,
     clientSecret: keys.googleClientSecret,
-    callbackURL: '/auth/google/callback'
+    callbackURL: '/auth/google/callback',
+    proxy: true
   }, (accessToken, refreshToken, profile, done) => {
     // once you hit this segment of the process, the token is cached
     // and google wont need to ask for permission again until expiration
