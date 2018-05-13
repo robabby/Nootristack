@@ -7,8 +7,8 @@ const supplementSchema = new Schema({
   quantity: String, // Number of bottles
   dose: String,
   price: { type: Number, default: 0 },
-  merchant: String
+  merchant: String,
+  examineLink: String
 });
 
-// mongoose.model('supplements', supplementSchema);
 module.exports = supplementSchema;

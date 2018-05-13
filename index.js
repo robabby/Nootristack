@@ -22,6 +22,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 require('./routes/authRoutes')(app);
+require('./routes/stackRoutes')(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve up production assets
