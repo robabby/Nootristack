@@ -6,7 +6,7 @@ const stackSchema = new Schema({
   title: String,
   cost: { type: Number, default: 0 },
   supplements: [SupplementSchema],
-  active: { type: Boolean, default: true },
+  isActive: { type: Boolean, default: true },
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
   dateCreated: Date,
   dateModified: Date

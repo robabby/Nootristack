@@ -5,11 +5,12 @@ const Stack = mongoose.model('stacks')
 
 module.exports = app => {
   app.post('/api/stacks', requireLogin, async (req, res) => {
-    const { name, supplements } = req.body;
+    const { name, supplements, isActive } = req.body;
 
     // Create the new stack
     const stack = new Stack({
       title,
+      isActive,
       supplements: supplements.split(',').map(
         (name, size, dose, price, merchant) => ({ name, size, dose, price, merchant })
       ),
