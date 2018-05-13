@@ -9,7 +9,7 @@ module.exports = app => {
 
     // Create the new stack
     const stack = new Stack({
-      name,
+      title,
       supplements: supplements.split(',').map(
         (name, size, dose, price, merchant) => ({ name, size, dose, price, merchant })
       ),

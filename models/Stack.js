@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 const SupplementSchema = require('./Supplement');
 
 const stackSchema = new Schema({
-  name: String,
+  title: String,
   cost: { type: Number, default: 0 },
   supplements: [SupplementSchema],
   active: { type: Boolean, default: true },

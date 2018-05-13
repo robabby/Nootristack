@@ -6,7 +6,7 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-const StackNew = () => <h2>SurveyNew</h2>
+import StackNew from './stacks/StackNew'
 
 
 class App extends Component {
