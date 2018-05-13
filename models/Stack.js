@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const SupplementSchema = require('./Recipient');
+const SupplementSchema = require('./Supplement');
 
 const stackSchema = new Schema({
   name: String,
