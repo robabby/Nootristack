@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchStacks } from '../../actions';
 
@@ -18,7 +19,11 @@ class StackList extends Component {
                 </p>
               </div>
               <div className="card-action">
-                <a href="#">View</a>
+                <Link
+                  to={`/stack/${stack._id}`}
+                >
+                  View
+                </Link>
                 <a href="#">Delete</a>
               </div>
             </div>

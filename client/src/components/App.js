@@ -6,7 +6,8 @@ import * as actions from '../actions';
 import Header from './Header';
 import Landing from './Landing';
 import Dashboard from './Dashboard';
-import StackNew from './stacks/StackNew'
+import StackNew from './stacks/StackNew';
+import StackDetail from './stacks/StackDetail';
 
 
 class App extends Component {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/stacks" component={Dashboard} />
             <Route path="/stacks/new" component={StackNew} />
+            <Route path="/stack/:id" component={StackDetail} />
           </div>
         </BrowserRouter>
       </div>

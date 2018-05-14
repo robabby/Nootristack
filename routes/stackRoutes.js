@@ -4,6 +4,7 @@ const requireLogin = require('../middlewares/requireLogin');
 const Stack = mongoose.model('stacks')
 
 module.exports = app => {
+  // STACKS
   app.get('/api/stacks', requireLogin, async (req, res) => {
     const stacks = await Stack.find({ _user: req.user.id })
       .select({ supplements: false });
@@ -37,5 +38,15 @@ module.exports = app => {
     } catch (e) {
       res.status(422);
     }
+  });
+
+  // STACK
+  app.get('/api/stack/:id', requireLogin, async (req, res) => {
+    console.log(req.params);
+
+    const stack = await Stack.findById(req.params.id);
+    console.log(stack);
+
+    res.send(stack);
   });
 };
