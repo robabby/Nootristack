@@ -5,41 +5,38 @@ import { Field } from 'redux-form';
 import SupplementField from './SupplementField';
 
 export default ({ fields, supplementFields, meta: { error, touched } }) => {
-
+  let renderFields = (supplement) => {
+    return _.map(supplementFields, ({ type, label, name }) => {
+      return (
+        <Field
+          key={name}
+          component={SupplementField}
+          type={type}
+          label={label}
+          name={`${supplement}.${name}`}
+        />
+      );
+    });
+  };
   return (
-    <div className="row">
-      {fields.map((supplement, index) => {
-        return _.map(supplementFields, ({ type, label, name }) => {
+    <div>
+      <div className="row">
+        {fields.map((supplement, index) => {
           return (
-            <Field
-              key={name}
-              component={SupplementField}
-              type={type}
-              label={label}
-              name={`${supplement}.${name}`}
-            />
+            <div key={index}>
+              {renderFields(supplement)}
+              <button
+                type="button"
+                title="Remove Supplement"
+                className="red btn-flat white-text"
+                onClick={() => fields.remove(index)}
+              >
+                <i className="material-icons">clear</i>
+              </button>
+            </div>
           );
-        });
-        // return (
-        //   <div key={index}>
-        //     {/* <div className="input-field">
-        //       <label htmlFor={name}>{label}</label>
-        //       <input type={type} {...input} style={{ marginBottom: '5px' }} />
-        //       <div className="red-text" style={{ marginBottom: '20px' }}>
-        //         {touched && error}
-        //       </div>
-        //     </div> */}
-        //     <button
-        //       type="button"
-        //       title="Remove Member"
-        //       className="red btn-flat white-text"
-        //       onClick={() => fields.remove(index)}
-        //     >
-        //       <i className="material-icons">clear</i>
-        //     </button>
-        //   </div>
-        // );
-      })}
+        })}
+      </div>
       <button
         type="button"
         className="teal btn-flat white-text"

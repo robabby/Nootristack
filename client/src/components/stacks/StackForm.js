@@ -62,6 +62,7 @@ class StackForm extends Component {
 }
 
 function validate(values) {
+  console.log(values);
   const errors = {};
 
   _.each(STACK_FIELDS, ({ name, errorMsg }) => {

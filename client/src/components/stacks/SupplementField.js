@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({ input, label, type, meta: { error, touched } }) => {
   const { name } = input;
-  console.log(input);
+  // console.log(input);
   return (
     <div className="input-field col s4">
       <label htmlFor={name}>{label}</label>
