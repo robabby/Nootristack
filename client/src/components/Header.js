@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 class Header extends Component {
   renderContent() {
+    console.log(this.props.auth);
     switch (this.props.auth) {
       case null:
         return;
@@ -13,7 +14,10 @@ class Header extends Component {
           <li><a href="/auth/google">Login With Google</a></li>
         );
       default:
-        return <li><a href="/api/logout">Log Out</a></li>;
+        return [
+          <li key="1">Stacks: {this.props.auth.stacks}</li>,
+          <li key="2"><a href="/api/logout">Log Out</a></li>
+        ];
     }
   }
 
@@ -22,12 +26,12 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
           <Link
-            to={this.props.auth ? '/stacks' : '/'} 
+            to={this.props.auth ? '/stacks' : '/'}
             className="brand-logo left"
           >
             Nootristack
           </Link>
-          <ul id="nav-mobile" className="right hide-on-med-and-down">
+          <ul id="nav-mobile" className="right">
             {this.renderContent()}
           </ul>
         </div>
