@@ -18,10 +18,10 @@ class StackList extends Component {
                   <div className="col s6 no-padding">
                     <span className="new badge" data-badge-caption="Supplements">{stack.supplements.length}</span>
                   </div>
-                  <p className="right">
-                    Created on: {new Date(stack.dateCreated).toLocaleDateString()}
-                  </p>
                 </div>
+                <p>
+                  Created on: {new Date(stack.dateCreated).toLocaleDateString()}
+                </p>
               </div>
               <div className="card-action">
                 <Link
