@@ -4,6 +4,13 @@ const requireLogin = require('../middlewares/requireLogin');
 const Stack = mongoose.model('stacks')
 
 module.exports = app => {
+  app.get('/api/stacks', requireLogin, async (req, res) => {
+    const stacks = await Stack.find({ _user: req.user.id })
+      .select({ supplements: false });
+
+    res.send(stacks);
+  });
+
   app.post('/api/stacks', requireLogin, async (req, res) => {
     console.log("/req.body/", req.body);
     const { title, supplements, isActive } = req.body;

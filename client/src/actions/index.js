@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_STACKS } from './types';
 
 export const fetchUser = () => async (dispatch) => {
   // if an action creator returns a function instead of an action
@@ -14,4 +14,10 @@ export const submitStack = (values, history) => async dispatch => {
 
   history.push('/stacks')
   dispatch({ type: FETCH_USER, payload: res.data });
+}
+
+export const fetchStacks = () => async dispatch => {
+  const res = await axios.get('/api/stacks');
+
+  dispatch({ type: FETCH_STACKS, payload: res.data });
 }
