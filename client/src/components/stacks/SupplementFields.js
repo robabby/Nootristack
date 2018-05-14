@@ -6,7 +6,8 @@ import SupplementField from './SupplementField';
 
 export default ({ fields, supplementFields, meta: { error, touched } }) => {
   let renderFields = (supplement) => {
-    return _.map(supplementFields, ({ type, label, name }) => {
+    return _.map(supplementFields, ({ type, label, name, testVal }) => {
+      console.log(testVal);
       return (
         <Field
           key={name}
@@ -14,6 +15,7 @@ export default ({ fields, supplementFields, meta: { error, touched } }) => {
           type={type}
           label={label}
           name={`${supplement}.${name}`}
+          testVal={testVal}
         />
       );
     });
