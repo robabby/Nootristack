@@ -5,7 +5,8 @@ const Stack = mongoose.model('stacks')
 
 module.exports = app => {
   app.post('/api/stacks', requireLogin, async (req, res) => {
-    const { name, supplements, isActive } = req.body;
+    console.log("/req.body/", req.body);
+    const { title, supplements, isActive } = req.body;
 
     // Create the new stack
     const stack = new Stack({

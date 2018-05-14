@@ -9,6 +9,9 @@ export const fetchUser = () => async (dispatch) => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const submitStack = values => {
-  return { type: 'submit_stack' };
+export const submitStack = values => async dispatch => {
+  console.log(values);
+  const res = await axios.post('/api/stacks', values);
+
+  dispatch({ type: FETCH_USER, payload: res.data });
 }
