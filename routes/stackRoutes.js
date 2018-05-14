@@ -6,8 +6,7 @@ const Stack = mongoose.model('stacks')
 module.exports = app => {
   // STACKS
   app.get('/api/stacks', requireLogin, async (req, res) => {
-    const stacks = await Stack.find({ _user: req.user.id })
-      .select({ supplements: false });
+    const stacks = await Stack.find({ _user: req.user.id });
 
     res.send(stacks);
   });
@@ -42,8 +41,6 @@ module.exports = app => {
 
   // STACK
   app.get('/api/stack/:id', requireLogin, async (req, res) => {
-    console.log(req.params);
-
     const stack = await Stack.findById(req.params.id);
     console.log(stack);
 

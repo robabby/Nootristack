@@ -13,10 +13,15 @@ class StackList extends Component {
       return (
             <div key={stack._id} className="card blue-grey darken-1">
               <div className="card-content white-text">
-                <span className="card-title">{stack.title}</span>
-                <p className="right">
-                  Created on: {new Date(stack.dateCreated).toLocaleDateString()}
-                </p>
+                <div className="row">
+                  <span className="card-title col s6 no-padding">{stack.title}</span>
+                  <div className="col s6 no-padding">
+                    <span className="new badge" data-badge-caption="Supplements">{stack.supplements.length}</span>
+                  </div>
+                  <p className="right">
+                    Created on: {new Date(stack.dateCreated).toLocaleDateString()}
+                  </p>
+                </div>
               </div>
               <div className="card-action">
                 <Link
