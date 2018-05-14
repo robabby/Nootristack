@@ -22,7 +22,7 @@ class Header extends Component {
       <nav>
         <div className="nav-wrapper">
           <Link
-            to={this.props.auth ? '/surveys' : '/'} 
+            to={this.props.auth ? '/stacks' : '/'} 
             className="brand-logo left"
           >
             Nootristack
