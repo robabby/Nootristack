@@ -11,7 +11,7 @@ const STACK_FIELDS = [
 ];
 
 const SUPPLEMENT_FIELDS = [
-  { type: 'text', label: 'Supplement Name', name: 'name', errorMsg: 'You must provide a name' },
+  { type: 'text', label: 'Supplement Title', name: 'title', errorMsg: 'You must provide a name' },
   { type: 'number', label: 'Bottle Size', name: 'bottleSize', errorMsg: 'You must provide a size' },
   { type: 'number', label: 'Number of Bottles', name: 'quantity' },
   { type: 'text', label: 'Dosage', name: 'dose', errorMsg: 'You must provide a dose' },
@@ -44,6 +44,8 @@ class StackForm extends Component {
         >
           {this.renderStackFields()}
           <br />
+          <h4>Supplements</h4>
+
           <FieldArray name="supplements" component={SupplementFields} supplementFields={SUPPLEMENT_FIELDS} />
           <br />
           <div style={{ marginTop: '20px' }}>
@@ -62,8 +64,10 @@ class StackForm extends Component {
 }
 
 function validate(values) {
-  console.log(values);
   const errors = {};
+
+  console.log('/values/', values);
+  // console.log('/errors/', errors);
 
   _.each(STACK_FIELDS, ({ name, errorMsg }) => {
     if (!values[name]) {
@@ -71,12 +75,25 @@ function validate(values) {
     }
   });
 
-  _.each(SUPPLEMENT_FIELDS, ({ name, errorMsg }) => {
-    if (!values[name]) {
-      errors[name] = errorMsg;
-    }
-  })
+  if (!values.supplements || !values.supplements.length) {
+    errors.supplements = { _error: 'At least one member must be entered' };
+  } else {
+    const supplementsArrayErrors = [];
+    values.supplements.forEach((supplement, index) => {
+      const supplementErrors = {};
+      _.each(SUPPLEMENT_FIELDS, ({ name, errorMsg }) => {
 
+        if (!supplement[name]) {
+          const error = { [name]: errorMsg }
+          _.defaults(supplementErrors, error)
+        }
+      })
+      supplementsArrayErrors[index] = supplementErrors;
+    })
+    if (supplementsArrayErrors.length) {
+      errors.supplements = supplementsArrayErrors;
+    }
+  }
   return errors;
 }
 

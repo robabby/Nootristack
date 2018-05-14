@@ -20,23 +20,23 @@ export default ({ fields, supplementFields, meta: { error, touched } }) => {
   };
   return (
     <div>
-      <div className="row">
-        {fields.map((supplement, index) => {
-          return (
-            <div key={index}>
-              {renderFields(supplement)}
+      {fields.map((supplement, index) => {
+        return (
+          <div key={index} className="row">
+            <div className="col s2 push-s10">
               <button
                 type="button"
                 title="Remove Supplement"
-                className="red btn-flat white-text"
+                className="red btn-flat white-text right"
                 onClick={() => fields.remove(index)}
               >
                 <i className="material-icons">clear</i>
               </button>
             </div>
-          );
-        })}
-      </div>
+            {renderFields(supplement)}
+          </div>
+        );
+      })}
       <button
         type="button"
         className="teal btn-flat white-text"

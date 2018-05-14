@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const supplementSchema = new Schema({
-  name: String,
+  title: String,
   bottleSize: Number, // Bottle size
   quantity: String, // Number of bottles
   dose: String,

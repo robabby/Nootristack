@@ -23,8 +23,6 @@ export default ({ input, label, type, meta: { error, touched } }) => {
       ...events
     } = checkbox;
 
-    // console.log(events);
-
     return (
       <div>
         <label htmlFor={name}>
