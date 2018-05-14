@@ -12,9 +12,10 @@ module.exports = app => {
     const stack = new Stack({
       title,
       isActive,
-      supplements: supplements.split(',').map(
-        (name, size, dose, price, merchant) => ({ name, size, dose, price, merchant })
-      ),
+      supplements,
+      // supplements: supplements.split(',').map(
+      //   (name, size, dose, price, merchant) => ({ name, size, dose, price, merchant })
+      // ),
       _user: req.user.id,
       dateCreated: Date.now()
     });

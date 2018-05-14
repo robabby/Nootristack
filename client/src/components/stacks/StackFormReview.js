@@ -1,11 +1,12 @@
 import _ from 'lodash';
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import stackFields from './config/stackFields.js';
 import supplementFields from './config/supplementFields.js';
 import * as actions from '../../actions'
 
-const StackFormReview = ({ onCancel, formValues, submitStack }) => {
+const StackFormReview = ({ onCancel, formValues, submitStack, history }) => {
   const reviewFields = _.map(stackFields, stackField => {
     let { name, label } = stackField
     return (
@@ -32,7 +33,7 @@ const StackFormReview = ({ onCancel, formValues, submitStack }) => {
         Back
       </button>
       <button
-        onClick={() => submitStack(formValues)}
+        onClick={() => submitStack(formValues, history)}
         className="green btn-flat white-text right"
       >
         Save Stack
@@ -49,4 +50,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps, actions)(StackFormReview);
+export default connect(mapStateToProps, actions)(withRouter(StackFormReview));
