@@ -4,8 +4,7 @@ import StackList from './stacks/StackList';
 
 const Dashboard = () => {
   return (
-    <div>
-      Dashboard
+    <div className="row" style={{ marginTop: '20px' }}>
       <StackList />
       <div className="fixed-action-btn">
         <Link

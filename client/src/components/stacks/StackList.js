@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchStacks } from '../../actions';
+import { withRouter } from 'react-router-dom';
+import { fetchStacks, deleteStack } from '../../actions';
 
 class StackList extends Component {
   componentDidMount() {
+    console.log(this.props);
     this.props.fetchStacks();
   }
 
@@ -29,7 +31,7 @@ class StackList extends Component {
                 >
                   View
                 </Link>
-                <a href="#">Delete</a>
+                <a href="#" onClick={() => this.props.deleteStack(stack._id, this.props.history)}>Delete</a>
               </div>
             </div>
       )
@@ -50,4 +52,4 @@ function mapStateToProps({ stacks }) {
 }
 
 
-export default connect(mapStateToProps, { fetchStacks})(StackList);
+export default connect(mapStateToProps, { fetchStacks, deleteStack })(withRouter(StackList));

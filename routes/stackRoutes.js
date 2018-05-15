@@ -30,7 +30,10 @@ module.exports = app => {
     // Save the stack
     try {
       await stack.save();
-      req.user.stacks += 1;
+
+      const stacks = await Stack.find({ _user: req.user.id });
+      req.user.stacks = stacks.length;
+
       const user = await req.user.save();
 
       res.send(user);
@@ -45,5 +48,23 @@ module.exports = app => {
     console.log(stack);
 
     res.send(stack);
+  });
+
+  app.delete('/api/stack/:id', requireLogin, async (req, res) => {
+    console.log(req.params);
+    const stack = await Stack.findByIdAndRemove(req.params.id);
+
+    try {
+      await stack.save();
+
+      const stacks = await Stack.find({ _user: req.user.id });
+      req.user.stacks = stacks.length;
+
+      const user = await req.user.save();
+
+      res.send(stacks);
+    } catch (e) {
+      res.status(422);
+    }
   });
 };
