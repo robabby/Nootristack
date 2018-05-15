@@ -9,6 +9,7 @@ import Dashboard from './Dashboard';
 import StackNew from './stacks/StackNew';
 import StackDetail from './stacks/StackDetail';
 
+import '../styles/scss/app.scss';
 
 class App extends Component {
   componentDidMount() {
