@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const supplementSchema = new Schema({
+  _user: { type: Schema.Types.ObjectId, ref: 'User' },
   title: String,
   bottleSize: Number, // Bottle size
   quantity: String, // Number of bottles
@@ -11,5 +12,7 @@ const supplementSchema = new Schema({
   merchant: String,
   examineLink: String
 });
+
+mongoose.model('supplements', supplementSchema);
 
 module.exports = supplementSchema;
