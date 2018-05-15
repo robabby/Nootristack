@@ -52,6 +52,7 @@
     "redux-form": "^7.3.0",
     "redux-thunk": "^2.2.0",
     "resolve": "1.6.0",
+    "resolve-url-loader": "^2.3.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -64,7 +65,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "sass" : "sass --watch src/styles/scss:src/styles/css"
+    "sass": "sass --watch src/styles/scss:src/styles/css"
   },
   "jest": {
     "collectCoverageFrom": [
