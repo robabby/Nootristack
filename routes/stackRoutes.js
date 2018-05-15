@@ -11,8 +11,7 @@ module.exports = app => {
     res.send(stacks);
   });
 
-  app.post('/api/stacks', requireLogin, async (req, res) => {
-    console.log("/req.body/", req.body);
+  app.post('/api/stack', requireLogin, async (req, res) => {
     const { title, supplements, isActive } = req.body;
 
     // Create the new stack

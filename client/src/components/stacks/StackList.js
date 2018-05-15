@@ -4,6 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchStacks, deleteStack } from '../../actions';
 
+import { Card, CardActions, CardHeader, CardTitle, CardText } from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
+
 class StackList extends Component {
   componentDidMount() {
     console.log(this.props);
@@ -13,25 +16,24 @@ class StackList extends Component {
   renderStacks() {
     return this.props.stacks.map(stack => {
       return (
-          <div key={stack._id} className="col s12 m6">
-            <div className="card blue-grey darken-1">
-              <div className="card-content white-text">
-                <span className="card-title">{stack.title}</span>
-                <span className="new badge" data-badge-caption="Supplements">{stack.supplements.length}</span>
-                <p>
-                  Created on: {new Date(stack.dateCreated).toLocaleDateString()}
-                </p>
-              </div>
-              <div className="card-action">
-                <Link
-                  to={`/stack/${stack._id}`}
-                >
-                  View
-                </Link>
-                <a href="#" onClick={() => this.props.deleteStack(stack._id, this.props.history)}>Delete</a>
-              </div>
-            </div>
-          </div>
+          <Card key={stack._id}>
+            <CardHeader
+              title={stack.title}
+              subtitle={`Created on: ${new Date(stack.dateCreated).toLocaleDateString()}`}
+              actAsExpander={true}
+              showExpandableButton={true}
+            />
+            <CardText expandable={true}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
+              Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
+              Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+            </CardText>
+            <CardActions>
+              <FlatButton label="View" href={`/stack/${stack._id}`} primary={true} />
+              <FlatButton label="Delete" secondary={true} onClick={() => this.props.deleteStack(stack._id, this.props.history)} />
+            </CardActions>
+          </Card>
       )
     })
   }

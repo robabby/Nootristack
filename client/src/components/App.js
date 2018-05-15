@@ -1,3 +1,4 @@
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -18,18 +19,20 @@ class App extends Component {
 
   render() {
     return (
-      <div className="container">
-        <BrowserRouter>
-          {/* BrowserRouter requires only one child */}
-          <div>
-            <Header />
-            <Route exact path="/" component={Landing} />
-            <Route exact path="/stacks" component={Dashboard} />
-            <Route path="/stacks/new" component={StackNew} />
-            <Route path="/stack/:id" component={StackDetail} />
-          </div>
-        </BrowserRouter>
-      </div>
+      <MuiThemeProvider>
+        <div className="container">
+          <BrowserRouter>
+            {/* BrowserRouter requires only one child */}
+            <div>
+              <Header />
+              <Route exact path="/" component={Landing} />
+              <Route exact path="/stacks" component={Dashboard} />
+              <Route path="/stack/new" component={StackNew} />
+              <Route path="/stack/:id" component={StackDetail} />
+            </div>
+          </BrowserRouter>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

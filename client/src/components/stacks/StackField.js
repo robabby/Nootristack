@@ -1,5 +1,8 @@
 // StackNew shows StackForm and StackFormReview
 import React from 'react';
+import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
+
 
 export default ({ input, label, type, meta: { error, touched } }) => {
   const { name } = input;
@@ -7,12 +10,12 @@ export default ({ input, label, type, meta: { error, touched } }) => {
 
   if (type === "text" || type === "number") {
     return (
-      <div className="input-field">
-        <label htmlFor={name}>{label}</label>
-        <input type={type} {...input} style={{ marginBottom: '5px' }} />
-        <div className="red-text" style={{ marginBottom: '20px' }}>
-          {touched && error}
-        </div>
+      <div>
+        <TextField
+          floatingLabelText={label}
+          errorText={touched && error}
+          {...input}
+        />
       </div>
     );
   } else if (type === "checkbox") {
@@ -25,10 +28,11 @@ export default ({ input, label, type, meta: { error, touched } }) => {
 
     return (
       <div>
-        <label htmlFor={name}>
-          <input type={type} name={name} checked={checked} {...events} />
-          <span>{label}</span>
-        </label>
+        <Checkbox
+          label={label}
+          checked={input.value ? true : false}
+          onCheck={input.onChange}
+        />
       </div>
     );
   }
