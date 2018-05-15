@@ -1,3 +1,4 @@
+import 'materialize-css/dist/css/materialize.min.css';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
@@ -20,7 +21,7 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="container">
+        <div>
           <BrowserRouter>
             {/* BrowserRouter requires only one child */}
             <div>

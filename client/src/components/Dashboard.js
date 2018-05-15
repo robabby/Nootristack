@@ -2,16 +2,25 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StackList from './stacks/StackList';
 
-import FloatingActionButton from 'material-ui/FloatingActionButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
+import { fullWhite } from 'material-ui/styles/colors';
 
 const Dashboard = () => {
   return (
-    <div className="row" style={{ marginTop: '20px' }}>
-      <StackList />
-      <FloatingActionButton href="stack/new">
-        <ContentAdd />
-      </FloatingActionButton>
+    <div className="container" style={{ marginTop: '20px' }}>
+      <div className="row">
+        <RaisedButton
+          label="Create New Stack"
+          primary={true}
+          href="stack/new"
+          icon={<ContentAdd color={ fullWhite } />}
+          className="right"
+        />
+      </div>
+      <div className="row">
+        <StackList />
+      </div>
     </div>
   );
 };
