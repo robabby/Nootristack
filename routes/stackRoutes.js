@@ -45,13 +45,11 @@ module.exports = app => {
   // STACK
   app.get('/api/stack/:id', requireLogin, async (req, res) => {
     const stack = await Stack.findById(req.params.id);
-    console.log(stack);
 
     res.send(stack);
   });
 
   app.delete('/api/stack/:id', requireLogin, async (req, res) => {
-    console.log(req.params);
     const stack = await Stack.findByIdAndRemove(req.params.id);
 
     try {
