@@ -14,7 +14,9 @@ class StackDetail extends Component {
     console.log(this.props.stack);
   }
 
-  renderSupplements(supplements) {
+  renderSupplements() {
+    const { supplements } = this.props.stack;
+
     return supplements.map((supplement, index) => {
       return (
         <div key={supplement._id}>
@@ -32,7 +34,7 @@ class StackDetail extends Component {
   }
 
   render() {
-    let { title, supplements } = this.props.stack;
+    let { title } = this.props.stack;
 
     if (this.state.loading) {
       return (
@@ -42,7 +44,7 @@ class StackDetail extends Component {
     return (
       <div>
         <h3>{title}</h3>
-        {this.renderSupplements(supplements)}
+        {this.renderSupplements()}
       </div>
     );
 
