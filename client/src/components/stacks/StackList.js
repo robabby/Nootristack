@@ -13,14 +13,11 @@ class StackList extends Component {
   renderStacks() {
     return this.props.stacks.map(stack => {
       return (
-            <div key={stack._id} className="card blue-grey darken-1">
+          <div key={stack._id} className="col s12 m6">
+            <div className="card blue-grey darken-1">
               <div className="card-content white-text">
-                <div className="row">
-                  <span className="card-title col s6 no-padding">{stack.title}</span>
-                  <div className="col s6 no-padding">
-                    <span className="new badge" data-badge-caption="Supplements">{stack.supplements.length}</span>
-                  </div>
-                </div>
+                <span className="card-title">{stack.title}</span>
+                <span className="new badge" data-badge-caption="Supplements">{stack.supplements.length}</span>
                 <p>
                   Created on: {new Date(stack.dateCreated).toLocaleDateString()}
                 </p>
@@ -34,13 +31,14 @@ class StackList extends Component {
                 <a href="#" onClick={() => this.props.deleteStack(stack._id, this.props.history)}>Delete</a>
               </div>
             </div>
+          </div>
       )
     })
   }
 
   render() {
     return (
-      <div className="row">
+      <div>
         {this.renderStacks()}
       </div>
     );
