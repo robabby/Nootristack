@@ -14,7 +14,7 @@ class Header extends Component {
         );
       default:
         return [
-          <li key="1">Stacks: {this.props.auth.stacks}</li>,
+          <li key="1"><Link to='/stacks'>Stacks: {this.props.auth.stacks}</Link></li>,
           <li key="2"><a href="/api/logout">Log Out</a></li>
         ];
     }
