@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchStack } from '../../actions';
 
+import LoadingSpinner from '../utils/LoadingSpinner';
+
 class StackDetail extends Component {
   state = {
     loading: true
@@ -13,11 +15,7 @@ class StackDetail extends Component {
   }
 
   renderSupplements(supplements) {
-
-    console.log(supplements);
-
     return supplements.map((supplement, index) => {
-      console.log(supplement);
       return (
         <div key={supplement._id}>
           <div>{supplement.title}</div>
@@ -38,18 +36,15 @@ class StackDetail extends Component {
 
     if (this.state.loading) {
       return (
-        <div>
-          Loading...
-        </div>
+        <LoadingSpinner />
       )
-    } else {
-      return (
-        <div>
-          <h3>{title}</h3>
-          {this.renderSupplements(supplements)}
-        </div>
-      );
     }
+    return (
+      <div>
+        <h3>{title}</h3>
+        {this.renderSupplements(supplements)}
+      </div>
+    );
 
   }
 }
