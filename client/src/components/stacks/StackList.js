@@ -30,7 +30,7 @@ class StackList extends Component {
               Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
             </CardText>
             <CardActions>
-              <FlatButton label="View" href={`/stack/${stack._id}`} primary={true} />
+              <FlatButton label="View" href={`/stack/view/${stack._id}`} primary={true} />
               <FlatButton label="Delete" secondary={true} onClick={() => this.props.deleteStack(stack._id, this.props.history)} />
             </CardActions>
           </Card>
