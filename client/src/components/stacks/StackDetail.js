@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchStack } from '../../actions';
 
 import LoadingSpinner from '../utils/LoadingSpinner';
+import SupplementTable from './SupplementTable';
 
 class StackDetail extends Component {
   state = {
@@ -10,41 +11,30 @@ class StackDetail extends Component {
   }
   async componentWillMount() {
     await this.props.fetchStack(this.props.match.params.id);
-    this.setState({ loading: false })
-    console.log(this.props.stack);
+
+    this.setState({ loading: false });
   }
 
-  renderSupplements() {
+  renderContent() {
     const { supplements } = this.props.stack;
 
-    return supplements.map((supplement, index) => {
-      return (
-        <div key={supplement._id}>
-          <div>{supplement.title}</div>
-          <div>{supplement.bottleSize}</div>
-          <div>{supplement.dose}</div>
-          <div>{supplement.merchant}</div>
-          <div>{supplement.price}</div>
-          <div>{supplement.quantity} </div>
-          <div>{supplement.servingSize}</div>
-        </div>
-      );
-    });
+    if (supplements) {
+      return <SupplementTable data={supplements} />
+    }
+
+    return (
+      <LoadingSpinner />
+    )
 
   }
 
   render() {
     let { title } = this.props.stack;
 
-    if (this.state.loading) {
-      return (
-        <LoadingSpinner />
-      )
-    }
     return (
-      <div>
+      <div className="container">
         <h3>{title}</h3>
-        {this.renderSupplements()}
+        {this.renderContent()}
       </div>
     );
 
