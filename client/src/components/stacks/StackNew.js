@@ -8,6 +8,7 @@ class StackNew extends Component {
   state = {
     showFormReview: false
   }
+
   renderContent() {
     if (this.state.showFormReview) {
       return (
@@ -23,9 +24,10 @@ class StackNew extends Component {
       />
     )
   }
+
   render() {
     return (
-      <div>
+      <div className="container">
         {this.renderContent()}
       </div>
     );
