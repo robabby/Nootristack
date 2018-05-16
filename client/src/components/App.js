@@ -28,8 +28,8 @@ class App extends Component {
               <Header />
               <Route exact path="/" component={Landing} />
               <Route exact path="/stacks" component={Dashboard} />
-              <Route path="/stack/new" component={StackNew} />
-              <Route path="/stack/:id" component={StackDetail} />
+              <Route exact path="/stack/new" component={StackNew} />
+              <Route exact path="/stack/view/:id" component={StackDetail} />
             </div>
           </BrowserRouter>
         </div>
