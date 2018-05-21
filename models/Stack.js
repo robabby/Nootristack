@@ -5,6 +5,7 @@ const SupplementSchema = require('./Supplement');
 const stackSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: 'User' },
   title: String,
+  notes: String,
   cost: { type: Number, default: 0 },
   supplements: [SupplementSchema],
   isActive: { type: Boolean, default: true },

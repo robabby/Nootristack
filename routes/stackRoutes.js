@@ -12,16 +12,23 @@ module.exports = app => {
   });
 
   app.post('/api/stack', requireLogin, async (req, res) => {
-    const { title, supplements, isActive } = req.body;
+    const { title, supplements, isActive, notes } = req.body;
+    let cost = 0;
+
+    supplements.map((item, index) => {
+      cost += parseFloat(item.price);
+      supplements[index]._user = req.user.id;
+    })
+
+    console.log(notes);
 
     // Create the new stack
     const stack = new Stack({
       title,
       isActive,
+      notes,
       supplements,
-      // supplements: supplements.split(',').map(
-      //   (name, size, dose, price, merchant) => ({ name, size, dose, price, merchant })
-      // ),
+      cost,
       _user: req.user.id,
       dateCreated: Date.now()
     });

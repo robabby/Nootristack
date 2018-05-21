@@ -4,6 +4,9 @@ import React from 'react';
 import { Field } from 'redux-form';
 import SupplementField from './SupplementField';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import IconAdd from 'material-ui/svg-icons/content/add';
+
 export default ({ fields, supplementFields, meta: { error, touched } }) => {
   let renderFields = (supplement) => {
     return _.map(supplementFields, ({ type, label, name, testVal }) => {
@@ -39,14 +42,13 @@ export default ({ fields, supplementFields, meta: { error, touched } }) => {
           </div>
         );
       })}
-      <button
-        type="button"
-        className="teal btn-flat white-text"
+
+      <RaisedButton
+        label="Add Supplement"
+        labelPosition="before"
+        icon={<IconAdd />}
         onClick={() => fields.push({})}
-      >
-        Add Supplement
-        <i className="material-icons right">add</i>
-      </button>
+      />
     </div>
   );
 };

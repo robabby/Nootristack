@@ -20,7 +20,7 @@ class AppDrawer extends Component {
           <Subheader>Stacks</Subheader>
           <ListItem
             primaryText="Create New Stack"
-            containerElement={<Link to="/stacks/new" />}
+            containerElement={<Link to="/stack/new" />}
             rightIcon={<ContentAdd />}
             onClick={() => this.props.toggleDrawer()}
           />

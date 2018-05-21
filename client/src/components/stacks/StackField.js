@@ -4,7 +4,7 @@ import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 
 
-export default ({ input, label, type, meta: { error, touched } }) => {
+export default ({ input, label, type, testVal, meta: { error, touched } }) => {
   const { name } = input;
 
 
@@ -18,7 +18,8 @@ export default ({ input, label, type, meta: { error, touched } }) => {
         />
       </div>
     );
-  } else if (type === "checkbox") {
+  }
+  if (type === "checkbox") {
     const { value, ...checkbox } = input;
     const {
       checked,
@@ -27,11 +28,28 @@ export default ({ input, label, type, meta: { error, touched } }) => {
     } = checkbox;
 
     return (
-      <div>
+      <div style={{ marginTop: '20px' }}>
         <Checkbox
           label={label}
           checked={input.value ? true : false}
           onCheck={input.onChange}
+        />
+      </div>
+    );
+  }
+  if (type === "textarea") {
+    let { value, ...props } = input;
+    console.log(testVal);
+    return (
+      <div>
+        <TextField
+          floatingLabelText={label}
+          errorText={touched && error}
+          defaultValue={testVal}
+          multiLine={true}
+          rows={3}
+          rowsMax={5}
+          {...props}
         />
       </div>
     );

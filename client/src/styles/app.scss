@@ -11,3 +11,17 @@ body {
   color:#fff;
   text-decoration: none;
 }
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+.row {
+  width: 100%;
+
+  &::after {
+    content: '';
+    display: table;
+    height:0;
+    clear: both;
+  }
+}

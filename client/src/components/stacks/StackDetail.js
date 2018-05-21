@@ -29,11 +29,14 @@ class StackDetail extends Component {
   }
 
   render() {
-    let { title } = this.props.stack;
+    let { title, notes } = this.props.stack;
 
     return (
       <div className="container">
         <h3>{title}</h3>
+        <p>
+          {notes}
+        </p>
         {this.renderContent()}
       </div>
     );

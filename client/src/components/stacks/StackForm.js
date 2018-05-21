@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import StackField from './StackField';
 import SupplementFields from './SupplementFields';
 
+import RaisedButton from 'material-ui/RaisedButton';
+import ChevronRight from 'material-ui/svg-icons/navigation/chevron-right';
+
 import stackFields from './config/stackFields.js'
 import supplementFields from './config/supplementFields.js';
 
 class StackForm extends Component {
   renderStackFields() {
-    return _.map(stackFields, ({ type, label, name }) => {
+    return _.map(stackFields, ({ type, label, name, testVal }) => {
       return (
         <Field
           key={name}
@@ -18,6 +21,7 @@ class StackForm extends Component {
           type={type}
           label={label}
           name={name}
+          testVal={testVal}
         />
       );
     });
@@ -25,8 +29,8 @@ class StackForm extends Component {
 
   render() {
     return (
-      <div>
-        <h4>Create a new Stack</h4>
+      <div className="container">
+        <h2>Create a new Stack</h2>
         <form
           onSubmit={this.props.handleSubmit(this.props.onStackSubmit)}
         >
@@ -36,14 +40,19 @@ class StackForm extends Component {
 
           <FieldArray name="supplements" component={SupplementFields} supplementFields={supplementFields} />
           <br />
-          <div style={{ marginTop: '20px' }}>
-            <Link to="/stacks" className="red btn-flat white-text">
-              Cancel
-            </Link>
-            <button type="submit" className="teal btn-flat right white-text">
-              Next
-              <i className="material-icons right">chevron_right</i>
-            </button>
+          <div style={{ marginTop: '20px', display: 'flex', justifyContent: 'space-between' }}>
+            <RaisedButton
+              href="/stacks"
+              label="Cancel"
+              secondary={true}
+            />
+            <RaisedButton
+              type="submit"
+              label="Next"
+              labelPosition="before"
+              icon={<ChevronRight />}
+              primary={true}
+            />
           </div>
         </form>
       </div>
